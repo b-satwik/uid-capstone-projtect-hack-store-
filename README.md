@@ -1,119 +1,111 @@
 # Hack Store — UID Capstone Project
 
-**Repository:** `uid-capstone-projtect-hack-store-`  
+**Repository:** `uid-capstone-projtect-hack-store-`
 **Author / Maintainer:** Bala Satwik
+**License:** Apache-2.0.
 
-> ⚠️ **Ethical use only.** This project is for education, defensive research, and portfolio purposes. Do **not** use the materials for illegal activity. Always obtain explicit permission before testing any systems you do not own.
-
----
-
-## Project summary
-Hack Store is a frontend e-commerce demo built as a UID capstone project to showcase gated distribution of pentesting tools and learning resources. The UI demonstrates a UID-based client-side login flow, gated product downloads (unlock code or authenticated session), and the use of external cloud drives (Mega / Google Drive) for hosting large assets. Binaries are stored off-repo and referenced by share links.
+> ⚠️ **Ethical Use Only.** This project is intended for education, defensive research, and portfolio purposes. Do **not** use the materials for illegal activity. Always obtain explicit permission before testing any systems you do not own.
 
 ---
 
-## Key features
-- Simple frontend (HTML / CSS / JavaScript) product catalog and product detail pages.  
-- UID-driven login/session model (localStorage demo) to gate downloads.  
-- Product pages reveal external download links only after UID / unlock code verification.  
-- Cart support with a demo coupon code for discounts.  
-- External storage integration: Mega.nz / Google Drive links for large files (do **not** commit binaries).  
-- Wiring flow: `main.html → login.html → index.html → product.html → download`.
+## Project Summary
+
+**Hack Store** is a frontend e-commerce demonstration built as a capstone/UID project. It showcases a proof-of-concept for gated distribution of pentesting tools and learning resources. The UI demonstrates **UID-based access control**, gated downloads (via an unlock code or authenticated session), and the use of external cloud drives (Mega / Google Drive) for hosting large assets.
 
 ---
 
-## Tech stack
-- HTML5, CSS3 (vanilla), JavaScript (vanilla)  
-- Static hosting friendly (GitHub Pages, Netlify) or any simple web server for local testing.
+## Key Features
+
+* **Clean Frontend:** Uses HTML, vanilla CSS, and JavaScript for product listing and product detail pages.
+* **Gated Access:** Implements a UID-driven login/session model (demo using `localStorage`/cookie) to restrict download visibility.
+* **Conditional Downloads:** Product pages reveal external download links only after successful UID/authentication or unlock code verification.
+* **External Integration:** References external storage like Mega.nz and Google Drive share links for binaries (assets are stored off-repository).
+* **Architecture Documentation:** Includes wiring/architecture notes to clearly show how pages and access control interact.
 
 ---
 
-## Installation / Run locally
-1. Clone the repo:
-```bash
-git clone https://github.com/b-satwik/uid-capstone-projtect-hack-store-.git
-cd uid-capstone-projtect-hack-store-
+## Tech Stack
 
-    Serve locally:
+* **Frontend:** HTML5, CSS3 (vanilla), JavaScript (vanilla)
+* **Hosting (Optional):** Simple static hosting (e.g., GitHub Pages, Netlify) or any lightweight web server for local testing.
+* **External Storage:** Mega.nz, Google Drive (used for share links only — binaries are stored off-repo).
 
-# Python 3 simple server
-python3 -m http.server 8000
-# open http://localhost:8000
+---
 
-Login credentials (demo)
+## Repository Structure (Recommended)
 
-This project includes a client-side demo login system to simulate UID-based access. These credentials are for testing the UI only.
+This structure provides a clean separation for the core web files, data, and documentation.
 
-    Admin
+ main.html
+    │
+    └──► login.html   (user enters UID / unlock code)
+             │
+             └──► index.html   (product list)
+                     │
+                     └──► product.html?id=<UID>
+                               │
+                               └──► Download (Mega / Google Drive link)
+---
 
-        UID: admin-000
+## Install / Run Locally
 
-        Password: adminpass
+1.  **Clone the repository:**
+    ```bash
+    git clone [https://github.com/b-satwik/uid-capstone-projtect-hack-store-.git](https://github.com/b-satwik/uid-capstone-projtect-hack-store-.git)
+    cd uid-capstone-projtect-hack-store-
+    ```
 
-        Access: admin dashboard (metadata editor / product management demo)
+2.  **Serve locally** using any lightweight web server (you must serve it to handle page-to-page navigation):
 
-    Demo user
+    ```bash
+    # Python 3 simple server
+    python3 -m http.server 8000
+    # or use 'serve' from npm
+    npx serve .
+    ```
 
-        UID: user-001
+3.  Open your browser and navigate to **`http://localhost:8000/main.html`** to test the UI.
 
-        Password: password123
+---
 
-        Access: product browsing, cart, gated downloads (client-side checks)
+## Wiring / Architecture (Page Direction)
 
-    Note: All authentication is purely client-side for the demo. Do not treat these credentials as secure. For production, implement server-side authentication, hashed passwords, and proper session management.
+The application follows a linear access flow, gated by the **UID verification** at the beginning of the user journey.
 
-Cart & Coupon
+The primary navigation flow is as follows:
 
-The demo cart supports a simple coupon code flow.
+1.  **`main.html`** (Landing Page)
+    $\downarrow$
+2.  **`login.html`** (Gating Page)
+    * The user is directed here from the landing page.
+    * The user must enter their **UID** or an unlock code to establish a session.
+    $\downarrow$
+3.  **`index.html`** (Product List)
+    * Visible only after successful verification on `login.html`.
+    * Displays a list of available products.
+    $\downarrow$
+4.  **`product.html?id=<PRODUCT_ID>`** (Product Detail)
+    * The page checks for a valid UID session (`localStorage` or cookie).
+    * If valid, the user may be asked for a secondary **unlock code**.
+    $\downarrow$
+5.  **Download Link** (Mega / Google Drive)
+    * The external link is revealed only after all authentication/verification steps are complete.
 
-    Coupon code: redeye
+---
 
-        Effect: Applies a 15% discount to the cart total (demo).
+## Security & Ethics Notes
 
-        How to use: On the cart/checkout screen enter coupon redeye and click Apply. The UI will show the discounted total.
+* This repository demonstrates **client-side concepts only** and **does not** represent a secure production access control system.
+* **DO NOT** commit API keys, service account files, or direct OAuth credentials to the repository.
+* For stronger access control in a production environment, you should implement server-side signed URLs or time-limited access tokens.
+* Always label tools clearly and only use pentest tools in authorized, non-production environments with explicit permission.
 
-        Limitations: Client-side only; intended for demo/portfolio use. For a real store, coupon validation must be done server-side.
+---
 
-How gated downloads work
+## Contributing
 
-    Product pages can include an unlock_code field in product metadata.
+1.  Fork the repo.
+2.  Create a feature branch (`git checkout -b feature/my-new-feature`).
+3.  Open a Pull Request (PR) with a clear description of your changes.
 
-    When present, the UI will prompt the user for that code before revealing the external download link.
-
-    Downloads are hosted on Mega.nz or Google Drive — the project only stores share links in product metadata.
-
-    For stronger protection use signed URLs, server-side token checks, or time-limited links.
-
-Example product metadata (products/metadata.json)
-
-{
-  "id": "tool-001",
-  "title": "Example Pentest Tool",
-  "description": "Demo tool for learning",
-  "thumbnail": "products/tool-001.png",
-  "storage": "mega",
-  "download_url": "https://mega.nz/your-file-link",
-  "unlock_code": "unlock-001",
-  "price": 19.99
-}
-
-Security & ethics notes
-
-    This repository is educational only — not production-ready.
-
-    Never commit API keys, service account files, or OAuth secrets to the repository.
-
-    Do not distribute real malware or use tools against systems you do not have explicit permission to test.
-
-    If you make this project public, clearly label its purpose and usage restrictions.
-
-Contributing
-
-    Fork the repo, create a feature branch, and open a pull request with a clear description.
-
-    Keep binary files out of source control. Use Mega/Drive share links or a release artifact strategy.
-
-Contact
-
-Maintainer: Bala Satwik
-Project site / portfolio: echouserbalasatwik.wordpress.com
+**Note:** Please keep binaries out of version control and continue to prefer external hosting for all downloadable assets.
