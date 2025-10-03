@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Your Cart — Hack Store</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="shared.js"></script>
+  <style>
+    /* Inherit your dark theme */
+    .cart-wrapper {
+      max-width: 1100px;
+      margin: 40px auto;
+      padding: 20px;
+    }
+
+    .cart-list {
+      background: var(--panel);
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 30px;
+    }
+
+    .cart-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--card);
+      border: 1px solid rgba(26,255,102,0.15);
+      border-radius: 8px;
+      padding: 12px;
+      margin-bottom: 15px;
+    }
+
+    .cart-item img {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      border-radius: 6px;
+      margin-right: 15px;
+    }
+
+    .cart-details {
+      flex: 1;
+    }
+
+    .cart-details h3 {
+      margin: 0 0 6px;
+      color: var(--accent);
+    }
+
+    .cart-price {
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+
+    .cart-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .qty-btn {
+      background: var(--accent);
+      color: #04110a;
+      border: none;
+      border-radius: 4px;
+      padding: 4px 8px;
+      cursor: pointer;
+      font-weight: 700;
+    }
+
+    .remove-btn {
+      background: crimson;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      padding: 4px 10px;
+      cursor: pointer;
+    }
+
+    .total {
+      text-align: right;
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: var(--accent);
+      margin-top: 10px;
+    }
+
+    /* Payment Box */
+    .cart-container {
+      background: var(--card);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+      margin: 40px auto;
+      padding: 30px;
+      text-align: center;
+      max-width: 500px;
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand">
+        <img src="https://echouserbalasatwik.wordpress.com/wp-content/uploads/2025/05/whatsapp-image-2025-05-27-at-19.32.25_0dcfaf6b.jpg" alt="Hack Store logo">
+        <span>Hack Store</span>
+      </a>
+    </div>
+  </header>
+
+  <main class="cart-wrapper">
+    <!-- ✅ Cart Items -->
+    <div class="cart-list" id="cart-list"></div>
+    <div class="total" id="cart-total"></div>
+
+    <!-- ✅ Payment Section -->
+    <div class="cart-container">
+      <h1>Your Cart</h1>
+      <p>Please make your payment using the QR code below and enter the redemption code to get your download link.</p>
+      <div class="qr-code">
+        <img src="qr.png" alt="Payment QR Code">
+      </div>
+      <div class="payment-section">
+        <div class="payment-input">
+          <input type="text" id="codeInput" placeholder="Enter Code">
+          <button class="payment-button" onclick="handlePayment()">Get Download Link</button>
+        </div>
+        <p class="download-link" id="downloadMessage" style="display: none;">Your download link is ready!</p>
+        <a href="#" id="downloadLink" class="download-link" style="display: none;">Download Now</a>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    // ✅ Render Cart Items
+    function renderCart() {
+      const cart = JSON.parse(localStorage.getItem("cart")) || [];
+      const cartList = document.getElementById("cart-list");
+      const cartTotal = document.getElementById("cart-total");
+
+      cartList.innerHTML = "";
+      let total = 0;
+
+      if (cart.length === 0) {
+        cartList.innerHTML = "<p>Your cart is empty.</p>";
+        cartTotal.innerHTML = "";
+        return;
+      }
+
+      cart.forEach((item, index) => {
+        const price = parseFloat(item.price) || 0;
+        const qty = item.quantity || 1;
+        total += price * qty;
+
+        cartList.innerHTML += `
+          <div class="cart-item">
+            <img src="${item.image}" alt="${item.name}">
+            <div class="cart-details">
+              <h3>${item.name}</h3>
+              <p class="cart-price">$${price} × ${qty} = $${(price * qty).toFixed(2)}</p>
+            </div>
+            <div class="cart-actions">
+              <button class="qty-btn" onclick="changeQty(${index}, -1)">-</button>
+              <span>${qty}</span>
+              <button class="qty-btn" onclick="changeQty(${index}, 1)">+</button>
+              <button class="remove-btn" onclick="removeFromCart(${index})">Remove</button>
+            </div>
+          </div>
+        `;
+      });
+
+      cartTotal.innerHTML = "Total: $" + total.toFixed(2);
+    }
+
+    // ✅ Change Quantity
+    function changeQty(index, delta) {
+      let cart = JSON.parse(localStorage.getItem("cart")) || [];
+      cart[index].quantity = (cart[index].quantity || 1) + delta;
+      if (cart[index].quantity < 1) cart[index].quantity = 1;
+      localStorage.setItem("cart", JSON.stringify(cart));
+      renderCart();
+      updateCounters();
+    }
+
+    // ✅ Remove item
+    function removeFromCart(index) {
+      let cart = JSON.parse(localStorage.getItem("cart")) || [];
+      cart.splice(index, 1);
+      localStorage.setItem("cart", JSON.stringify(cart));
+      renderCart();
+      updateCounters();
+    }
+
+    // ✅ Payment Validation
+    function handlePayment() {
+      const codeInput = document.getElementById('codeInput').value;
+      const downloadMessage = document.getElementById('downloadMessage');
+      const downloadLink = document.getElementById('downloadLink');
+
+      if (codeInput === 'redeye') {
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        if (cart.length > 0) {
+          const product = cart[0]; // handle single product purchase for now
+          
+          if (product.downloadLink === 'unavailable') {
+            alert('Download link is temporarily unavailable. It will be sent to your registered user ID email.');
+            downloadMessage.style.display = 'none';
+            downloadLink.style.display = 'none';
+          } else {
+            downloadLink.href = product.downloadLink;
+            downloadLink.textContent = `Download ${product.name}`;
+            downloadLink.style.display = 'block';
+            downloadMessage.style.display = 'block';
+          }
+        } else {
+          alert('Your cart is empty. Please go back to the products page.');
+        }
+      } else {
+        alert('Incorrect code. Please try again.');
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", renderCart);
+  </script>
+</body>
+</html>
+

@@ -1,0 +1,23 @@
+:root{
+  --bg:#0f1720;
+  --card:#0b1220;
+  --accent:#0b74de;
+  --muted:#9aa7b6;
+  --text:#e6eef6;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;font-family:Inter,system-ui,Segoe UI,Arial;background:linear-gradient(180deg,#071021 0%, #0f1b2a 100%);color:var(--text);}
+
+.login-wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px}
+.login-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.04);padding:22px;border-radius:12px;width:100%;max-width:420px;box-shadow:0 10px 30px rgba(2,6,23,0.6)}
+.login-card h1{margin:0 0 14px;font-size:1.25rem;color:var(--accent)}
+.login-card label{display:block;margin-top:12px;margin-bottom:6px;color:var(--muted);font-size:0.9rem}
+.login-card input[type="text"],.login-card input[type="password"]{width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.06);background:rgba(255,255,255,0.02);color:var(--text);font-size:1rem}
+.login-card .captcha-row{display:flex;align-items:center;gap:10px;margin-top:12px}
+#captcha-canvas{border-radius:6px;background:#fff}
+#reload-captcha{background:transparent;border:1px solid rgba(255,255,255,0.06);padding:6px 8px;border-radius:6px;color:var(--text);cursor:pointer}
+.btn{display:inline-block;margin-top:16px;padding:10px 14px;background:var(--accent);color:#fff;border-radius:8px;border:none;cursor:pointer;font-weight:600}
+.help{margin-top:10px;color:var(--muted);font-size:0.9rem}
+#message{margin-top:12px;font-size:0.95rem}
+@media (max-width:420px){ .login-card{padding:16px} }

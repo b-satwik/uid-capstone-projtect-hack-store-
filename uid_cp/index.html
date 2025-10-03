@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hack Store — Pentesting Tools & VMs</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="shared.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand">
+        <img src="https://echouserbalasatwik.wordpress.com/wp-content/uploads/2025/05/whatsapp-image-2025-05-27-at-19.32.25_0dcfaf6b.jpg" alt="Hack Store logo">
+        <span>Hack Store</span>
+      </a>
+      <nav class="main-nav">
+        <a href="index.html">Home</a>
+        <a href="categories/pentesting.html">Pentesting</a>
+        <a href="categories/vms.html">VMs</a>
+        <a href="categories/os.html">OS ISOs</a>
+        <li><a href="cart.html">
+  🛒 Cart <span id="cart-count" class="badge">0</span>
+</a></li>
+<li><a href="wishlist.html">
+  Wishlist<img href=""> <span id="wishlist-count" class="badge">0</span>
+</a></li>
+
+        <a href="products.html">Products</a>
+        <a href="info/about.html">About</a>
+        <a href="info/contact.html">Contact</a>
+        <a href="../login.html">Login</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-overlay"></div>
+      <div class="hero-inner container">
+        <h1>Hack Store</h1>
+        <p class="lead">A student built marketplace for pentesting tools, VMs and OS images — idea by Bala Satwik</p>
+        <div class="hero-cta">
+          <a class="btn primary" href="categories/pentesting.html">Browse Tools</a>
+          <a class="btn" href="categories/vms.html">Browse VMs</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Updates Section -->
+    <section class="updates container">
+      <h2>Latest Updates</h2>
+      <div class="update-card">
+        <h3>Windows 11 ISO Now Available</h3>
+        <p>We are happy to announce that the Windows 11 ISO image is now available on Hack Store under the <a href="categories/os.html">OS ISOs</a> section.</p>
+        <p class="date"> Updated: September 2025</p>
+      </div>
+    </section>
+  </main>
+<!-- Chatbox -->
+<div id="chatbox-container">
+  <img id="chat-sticker" src="sabine.webp" alt="Sabine Wren Sticker" />
+  <div id="chat-box" class="hidden">
+    <div id="chat-log"></div>
+    <input type="text" id="chat-input" placeholder="Say something..." />
+  </div>
+</div>
+
+<style>
+  #chatbox-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 9999;
+    text-align: center;
+    cursor: pointer;
+    font-family: Inter, sans-serif;
+  }
+
+  #chat-sticker {
+    width: auto;          /* preserve aspect ratio */
+    height: 160px;        /* set desired height */
+    border-radius: 12px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.4);
+    transition: transform 0.2s;
+  }
+
+  #chat-sticker:hover {
+    transform: scale(1.1);
+  }
+
+  #chat-box {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    margin-top: 10px;
+    background: rgba(0,0,0,0.8);
+    padding: 10px;
+    border-radius: 12px;
+    width: 220px;
+  }
+
+  #chat-box.hidden {
+    display: none;
+  }
+
+  #chat-log {
+    max-height: 150px;
+    overflow-y: auto;
+    color: #e6e6e6;
+    font-size: 0.9rem;
+    margin-bottom: 6px;
+  }
+
+  #chat-input {
+    padding: 6px 8px;
+    border-radius: 8px;
+    border: none;
+    outline: none;
+  }
+</style>
+
+<script>
+  const chatSticker = document.getElementById('chat-sticker');
+  const chatBox = document.getElementById('chat-box');
+  const chatLog = document.getElementById('chat-log');
+  const chatInput = document.getElementById('chat-input');
+
+  chatSticker.addEventListener('click', () => {
+    chatBox.classList.toggle('hidden');
+  });
+
+  chatInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter' && chatInput.value.trim() !== '') {
+      const userMessage = chatInput.value.trim();
+      chatLog.innerHTML += `<div><strong>You:</strong> ${userMessage}</div>`;
+      chatLog.innerHTML += `<div><strong>Hack Store:</strong> We will contact you soon.</div>`;
+      chatLog.scrollTop = chatLog.scrollHeight;
+      chatInput.value = '';
+    }
+  });
+</script>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>Made by a student <a href="info/about.html">About</a></p>
+    </div>
+  </footer>
+</body>
+</html>

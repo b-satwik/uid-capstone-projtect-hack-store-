@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Products — Hack Store</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="shared.js"></script>
+  <style>
+    :root {
+      --bg:#060606;
+      --panel:#0f1112;
+      --muted:#bfc5c1;
+      --accent:#1aff66;
+      --card:#121314;
+    }
+
+    body {
+      margin:0;
+      font-family:Inter,Segoe UI,Roboto,Arial,sans-serif;
+      background:var(--bg) url('ui.png') center/cover fixed no-repeat;
+      color:#e6e6e6;
+    }
+
+    .container {
+      max-width:1100px;
+      margin:0 auto;
+      padding:0 18px;
+    }
+
+    .site-header {
+      background:rgba(0,0,0,0.6);
+      border-bottom:2px solid rgba(26,255,102,0.2);
+    }
+
+    .header-inner {
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:14px 0;
+    }
+
+    .brand {
+      display:flex;
+      align-items:center;
+      gap:12px;
+      text-decoration:none;
+      color:inherit;
+    }
+
+    .brand img {
+      width:44px;
+      height:44px;
+      object-fit:cover;
+      border-radius:6px;
+    }
+
+    .brand span {
+      font-weight:700;
+      color:var(--accent);
+    }
+
+    .main-nav a {
+      color:var(--muted);
+      text-decoration:none;
+      margin-left:18px;
+      font-size:0.95rem;
+    }
+
+    .main-nav a:hover,
+    .main-nav a.active {
+      color:var(--accent);
+    }
+
+    .product-section {
+      margin:40px 0;
+    }
+
+    .product-section h2 {
+      color:var(--accent);
+      margin-bottom:20px;
+    }
+
+    .product-grid {
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+      gap:20px;
+    }
+
+    .product-card {
+      background:var(--card);
+      border:1px solid rgba(255,255,255,0.08);
+      padding:18px;
+      border-radius:10px;
+      box-shadow:0 2px 6px rgba(0,0,0,0.4);
+      cursor:pointer;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .product-card:hover {
+      transform: translateY(-4px);
+      box-shadow:0 6px 12px rgba(0,0,0,0.5);
+    }
+
+    .product-card img {
+        height: 120px;
+        object-fit: contain;
+        margin-bottom: 12px;
+    }
+
+    .product-card h3 {
+      margin:0 0 6px;
+      color:#fff;
+    }
+
+    .product-card p {
+      color:var(--muted);
+      flex-grow:1;
+    }
+
+    .wishlist-btn {
+      margin-top:10px;
+      padding:6px 12px;
+      background:var(--panel);
+      color:var(--accent);
+      border:none;
+      border-radius:6px;
+      cursor:pointer;
+      font-weight:700;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .wishlist-btn:hover {
+      background:var(--accent);
+      color:#04110a;
+    }
+
+    .btn-disabled {
+      display:inline-block;
+      padding:10px 18px;
+      background:#fff;
+      color:#777;
+      border:1px solid #ccc;
+      border-radius:6px;
+      cursor:not-allowed;
+      font-weight:700;
+      text-decoration:none;
+    }
+
+    .site-footer {
+      padding:20px 0;
+      text-align:center;
+      font-size:0.9rem;
+      color:var(--muted);
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand">
+        <img src="https://echouserbalasatwik.wordpress.com/wp-content/uploads/2025/05/whatsapp-image-2025-05-27-at-19.32.25_0dcfaf6b.jpg" alt="Hack Store logo">
+        <span>Hack Store</span>
+      </a>
+      <nav class="main-nav">
+        <a href="index.html">Home</a>
+        <a href="categories/pentesting.html">Pentesting</a>
+        <a href="categories/vms.html">VMs</a>
+        <a href="categories/os.html">OS ISOs</a>
+        <a href="products.html" class="active">Products</a>
+                <li><a href="cart.html">
+  🛒 Cart <span id="cart-count" class="badge">0</span>
+</a></li>
+<li><a href="wishlist.html">
+  Wishlist<img href=""> <span id="wishlist-count" class="badge">0</span>
+</a></li>
+        <a href="info/about.html">About</a>
+        <a href="info/contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="product-section">
+      <h2>Pentesting Tools</h2>
+      <div class="product-grid">
+        <div class="product-card" onclick="window.location.href='products/nmap.html'">
+          <img src="../nmap.png" alt="Nmap logo">
+          <h3>Nmap</h3>
+          <p>Powerful network scanner for reconnaissance.</p>
+          <button class="wishlist-btn" data-name="Nmap" data-page="products/nmap.html">Add to Wishlist</button>
+        </div>
+        <div class="product-card" onclick="window.location.href='products/burp-suite.html'">
+          <img src="../burp-suite.png" alt="Burp Suite logo">
+          <h3>Burp Suite</h3>
+          <p>Leading web vulnerability scanner and proxy tool.</p>
+          <button class="wishlist-btn" data-name="Burp Suite" data-page="products/burp-suite.html">Add to Wishlist</button>
+        </div>
+        <div class="product-card" onclick="window.location.href='products/ghidra.html'">
+          <img src="../ghidra.png" alt="Ghidra logo">
+          <h3>Ghidra</h3>
+          <p>Software reverse engineering framework developed by the NSA.</p>
+          <button class="wishlist-btn" data-name="Ghidra" data-page="products/ghidra.html">Add to Wishlist</button>
+        </div>
+        <div class="product-card" onclick="window.location.href='products/metasploit.html'">
+          <img src="../metasploit.png" alt="Metasploit Framework logo">
+          <h3>Metasploit Framework</h3>
+          <p>Exploitation and payload development framework.</p>
+          <button class="wishlist-btn" data-name="Metasploit Framework" data-page="products/metasploit.html">Add to Wishlist</button>
+        </div>
+        <div class="product-card" onclick="window.location.href='products/recon-ng.html'">
+          <img src="../recong.png" alt="Recon-ng logo">
+          <h3>Recon-ng</h3>
+          <p>Web reconnaissance framework with modular design.</p>
+          <button class="wishlist-btn" data-name="Recon-ng" data-page="products/recon-ng.html">Add to Wishlist</button>
+        </div>
+        <div class="product-card" onclick="window.location.href='products/wireshark.html'">
+          <img src="../wireshark.png" alt="Wireshark logo">
+          <h3>Wireshark</h3>
+          <p>Network protocol analyzer for troubleshooting.</p>
+          <button class="wishlist-btn" data-name="Wireshark" data-page="products/wireshark.html">Add to Wishlist</button>
+        </div>
+        <div class="product-card" onclick="window.location.href='products/aircrack-ng.html'">
+          <img src="../aircrackng.png" alt="Aircrack-ng logo">
+          <h3>Aircrack-ng</h3>
+          <p>Wireless network security testing suite.</p>
+          <button class="wishlist-btn" data-name="Aircrack-ng" data-page="products/aircrack-ng.html">Add to Wishlist</button>
+        </div>
+        <div class="product-card" onclick="window.location.href='products/wifite2.html'">
+          <img src="../wifite.png" alt="Wifite2 logo">
+          <h3>Wifite2</h3>
+          <p>Automated WiFi attack tool.</p>
+          <button class="wishlist-btn" data-name="Wifite2" data-page="products/wifite2.html">Add to Wishlist</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="product-section">
+      <h2>Virtual Machines</h2>
+      <div class="product-grid">
+        <div class="product-card" onclick="window.location.href='products/android-vdi.html'">
+          <img src="../android.png" alt="Android VDI logo">
+          <h3>Android VDI</h3>
+          <p>Android 9 Virtual Machine image.</p>
+          <button class="wishlist-btn" data-name="Android VDI" data-page="products/android-vdi.html">Add to Wishlist</button>
+        </div>
+        <div class="product-card" onclick="window.location.href='products/kali-vm.html'">
+          <img src="../kali.png" alt="Kali Linux VM logo">
+          <h3>Kali Linux VM</h3>
+          <p>Pre-built penetration testing virtual machine.</p>
+          <button class="wishlist-btn" data-name="Kali Linux VM" data-page="products/kali-vm.html">Add to Wishlist</button>
+        </div>
+        <div class="product-card" onclick="window.location.href='products/metasploit-vm.html'">
+          <img src="../metasploit-vm.png" alt="Metasploit VM logo">
+          <h3>Metasploit VM</h3>
+          <p>Pre-configured Metasploit environment.</p>
+          <button class="wishlist-btn" data-name="Metasploit VM" data-page="products/metasploit-vm.html">Add to Wishlist</button>
+        </div>
+        <div class="product-card" onclick="window.location.href='products/parrot-vm.html'">
+          <img src="../parrot.png" alt="Parrot VM logo">
+          <h3>Parrot OS VM</h3>
+          <p>Secure virtual machine for ethical hacking and privacy.</p>
+          <button class="wishlist-btn" data-name="Parrot OS VM" data-page="products/parrot-vm.html">Add to Wishlist</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="product-section">
+      <h2>Operating System ISOs</h2>
+      <div class="product-grid">
+        <div class="product-card" onclick="window.location.href='products/redhat-iso.html'">
+          <img src="../redhat.png" alt="Red Hat ISO logo">
+          <h3>Red Hat ISO</h3>
+          <p>Enterprise Linux distribution ISO image.</p>
+          <button class="wishlist-btn" data-name="Red Hat ISO" data-page="products/redhat-iso.html">Add to Wishlist</button>
+        </div>
+        <div class="product-card" onclick="window.location.href='products/win11.html'">
+          <img src="../windows11.png" alt="Windows 11 ISO logo">
+          <h3>Windows 11 ISO</h3>
+          <p>Latest version of Windows for your virtual environment.</p>
+          <button class="wishlist-btn" data-name="Windows 11 ISO" data-page="products/win11.html">Add to Wishlist</button>
+        </div>
+      </div>
+    </section>
+  </main>
+<script>
+let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+
+// Ensure wishlist is always an array of {name, page}
+wishlist = wishlist.filter(item => item && item.name && item.page);
+localStorage.setItem('wishlist', JSON.stringify(wishlist));
+
+document.querySelectorAll('.wishlist-btn').forEach(btn => {
+  const productName = btn.dataset.name;
+  const productPage = btn.dataset.page;
+
+  // Disable button if already in wishlist
+  if (wishlist.some(item => item.name === productName)) {
+    btn.textContent = 'Wishlisted';
+    btn.disabled = true;
+  }
+
+  btn.addEventListener('click', e => {
+    e.stopPropagation();
+    // Prevent duplicates
+    if (!wishlist.some(item => item.name === productName)) {
+      wishlist.push({ name: productName, page: productPage });
+      localStorage.setItem('wishlist', JSON.stringify(wishlist));
+      btn.textContent = 'Wishlisted';
+      btn.disabled = true;
+    }
+  });
+});
+</script>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>Hack Store — student project, idea by Balasatwik</p>
+    </div>
+  </footer>
+</body>
+</html>

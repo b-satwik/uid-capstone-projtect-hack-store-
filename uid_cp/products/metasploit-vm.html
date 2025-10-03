@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Metasploit VM — Hack Store</title>
+  <link rel="stylesheet" href="../styles.css">
+  <script src="../shared.js"></script>
+  <style>
+    /* General Styling from previous conversations */
+    :root {
+      --bg: #060606;
+      --panel: #0f1112;
+      --muted: #bfc5c1;
+      --accent: #1aff66;
+      --card: #121314;
+    }
+
+    body {
+      margin: 0;
+      font-family: Inter, Segoe UI, Roboto, Arial, sans-serif;
+      background: var(--bg) url('../ui.png') center/cover fixed no-repeat;
+      color: #e6e6e6;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 18px;
+    }
+
+    .site-header {
+      background: rgba(0, 0, 0, 0.6);
+      border-bottom: 2px solid rgba(26, 255, 102, 0.2);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .brand img {
+      width: 44px;
+      height: 44px;
+      object-fit: cover;
+      border-radius: 6px;
+    }
+
+    .brand span {
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    /* Product Page Specific Styling */
+    .product-detail-card {
+      background: var(--card);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+      margin: 40px auto;
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .product-detail-card img {
+      max-width: 250px;
+      height: auto;
+      border-radius: 8px;
+      margin-bottom: 25px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .product-detail-card img:hover {
+      transform: scale(1.03);
+    }
+
+    .product-detail-card h1 {
+      color: var(--accent);
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+      letter-spacing: 0.5px;
+    }
+
+    .product-detail-card .category {
+      color: var(--muted);
+      font-size: 1rem;
+      margin-bottom: 5px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .product-detail-card .price {
+        font-size: 1.5rem;
+        color: var(--accent);
+        font-weight: bold;
+        margin-bottom: 20px;
+    }
+
+    .product-detail-card p {
+      color: #e6e6e6;
+      max-width: 700px;
+      margin: 0 auto 20px auto;
+      font-size: 1.1rem;
+    }
+
+    .button-container {
+        display: flex;
+        gap: 15px;
+        margin-top: 25px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .button-container button, .button-container a {
+        padding: 12px 25px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: 700;
+        transition: background 0.3s ease, transform 0.2s ease;
+        border: none;
+        cursor: pointer;
+    }
+    
+    .wishlist-btn {
+        background: var(--panel);
+        color: var(--accent);
+        border: 1px solid var(--accent);
+    }
+
+    .wishlist-btn:hover {
+        background: var(--accent);
+        color: var(--bg);
+    }
+
+    .cart-btn {
+        background: var(--muted);
+        color: var(--bg);
+    }
+
+    .cart-btn:hover {
+        background: #aab2ae;
+        transform: translateY(-2px);
+    }
+
+    .buy-btn {
+        background: var(--accent);
+        color: var(--bg);
+        box-shadow: 0 4px 8px rgba(26, 255, 102, 0.3);
+    }
+
+    .buy-btn:hover {
+        background: #00e653;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 12px rgba(26, 255, 102, 0.4);
+    }
+
+    .site-footer {
+      padding: 20px 0;
+      text-align: center;
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="../index.html" class="brand"> 
+        <img src="https://echouserbalasatwik.wordpress.com/wp-content/uploads/2025/05/whatsapp-image-2025-05-27-at-19.32.25_0dcfaf6b.jpg" alt="Hack Store logo">
+        <span>Hack Store</span>
+      </a>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="product-detail-card">
+      <img src="../../metasploit.png" alt="Metasploit VM logo">
+      <h1>Metasploit VM</h1>
+      <p class="category">Virtual Machine</p>
+      <p class="price">₹5000</p>
+      <p>A preconfigured virtual machine with Metasploit, perfect for safe lab use. This VM is a secure environment for developing and executing exploit code without risking damage to your main system. It's highly recommended over native Windows installations due to its controlled nature and bundled tools.</p>
+      
+      <div class="button-container">
+        <button class="wishlist-btn" onclick="addToWishlist('Metasploit VM', 'uid_cp/metasploit-vm.html')">Add to Wishlist</button>
+        <button class="cart-btn" onclick="addToCart('Metasploit VM', 'uid_cp/metasploit-vm.html', 'https://bit.ly/3elka1W')">Add to Cart</button>
+        <button class="buy-btn" onclick="buyNow('Metasploit VM', 'uid_cp/metasploit-vm.html', 'https://bit.ly/3elka1W')">Buy Now</button>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>Hack Store — student project, idea by Balasatwik</p>
+    </div>
+  </footer>
+
+  <script>
+    function addToWishlist(name, page) {
+      let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+      if (!wishlist.some(item => item.name === name)) {
+        wishlist.push({ name, page });
+        localStorage.setItem('wishlist', JSON.stringify(wishlist));
+        alert(`${name} added to wishlist!`);
+      } else {
+        alert(`${name} is already in your wishlist.`);
+      }
+    }
+
+    function addToCart(name, page, downloadLink) {
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      // This simple logic adds only one item to the cart, overwriting previous one
+      cart = [{ name, page, downloadLink }];
+      localStorage.setItem('cart', JSON.stringify(cart));
+      alert(`${name} added to cart!`);
+    }
+    
+    function buyNow(name, page, downloadLink) {
+        addToCart(name, page, downloadLink);
+        window.location.href = '../cart.html';
+    }
+  </script>
+</body>
+</html>

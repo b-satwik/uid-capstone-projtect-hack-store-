@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Main — Bala Satwik</title>
+  <link rel="stylesheet" href="uid_cp/styles.css">
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body,html { height:100%; width:100%; font-family:Inter,Segoe UI,Roboto,Arial,sans-serif; overflow:hidden; }
+
+    /* video wallpaper */
+    .video-bg {
+      position:fixed;
+      top:0; left:0;
+      width:100%; height:100%;
+      object-fit:cover;
+      z-index:-1;
+    }
+
+    /* overlay to make text readable */
+    .overlay {
+      position:fixed;
+      top:0; left:0;
+      width:100%; height:100%;
+      background:rgba(0,0,0,0.55);
+      z-index:0;
+    }
+
+    .profile {
+      position:relative;
+      z-index:1;
+      max-width:600px;
+      margin:auto;
+      padding:24px;
+      background:rgba(0,0,0,0.65);
+      border-radius:16px;
+      box-shadow:0 10px 30px rgba(0,0,0,0.7);
+      text-align:center;
+      top:50%;
+      transform:translateY(-50%);
+    }
+    .profile img {
+      width:120px; height:120px;
+      border-radius:50%;
+      object-fit:cover;
+      margin-bottom:12px;
+      border:3px solid var(--accent,#1aff66);
+    }
+    .profile h1 {
+      margin:0;
+      font-size:2rem;
+      color:var(--accent,#1aff66);
+    }
+    .profile p {
+      margin:6px 0 20px;
+      color:#bfc5c1;
+      font-size:1.05rem;
+    }
+
+    .links {
+      display:flex;
+      flex-wrap:wrap;
+      justify-content:center;
+      gap:14px;
+    }
+    .links a {
+      display:inline-block;
+      padding:12px 20px;
+      background:var(--accent,#1aff66);
+      color:#04110a;
+      font-weight:700;
+      text-decoration:none;
+      border-radius:8px;
+      transition:transform 0.2s ease, background 0.2s ease;
+    }
+    .links a:hover {
+      background:#16cc52;
+      transform:scale(1.05);
+    }
+  </style>
+</head>
+<body>
+  <!-- video background -->
+  <video class="video-bg" src="main_bg.mp4" autoplay loop muted playsinline></video>
+  <div class="overlay"></div>
+
+  <!-- profile card -->
+  <div class="profile">
+    <img src="https://echouserbalasatwik.wordpress.com/wp-content/uploads/2025/05/whatsapp-image-2025-05-27-at-19.32.25_0dcfaf6b.jpg" alt="Profile Picture">
+    <h1>Bala Satwik</h1>
+    <p>Aspiring Cybersecurity Engineer · Capstone Project: Hack Store</p>
+    <div class="links">
+      <a href="login.html"> Login</a>
+      <a href="resume.pdf" target="_blank"> Resume</a>
+      <a href="https://www.linkedin.com/in/bala-satwik-boyina" target="_blank"> LinkedIn</a>
+      <a href="https://github.com/b-satwik" target="_blank"> GitHub</a>
+      <a href="uid_cp/index.html"> Hack Store</a>
+      <a href="uid_cp/info/contact.html"> Contact</a>
+    </div>
+  </div>
+</body>
+</html>
